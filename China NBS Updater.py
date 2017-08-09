@@ -86,7 +86,7 @@ with session() as c:
 
 def fetch_url(code,key):
 	with session() as c:
-		return([Codedict[key][code]]+c.post(base+code+suffix).content.split('{"data":')[1:][::-1]) #arranging data in chronological order by reversing
+		return([Codedict[key][code]]+c.post(base+code+suffix).content.split('{"data":')[1:][::-1]) #arranging data in chronological order 
 	
 def spin(key):
 	threads = [MyThread(target=fetch_url, args=(code,key)) for code in Codedict[key]]
