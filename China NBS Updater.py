@@ -69,8 +69,7 @@ class MyThread(Thread):
                  args=(), kwargs={}, Verbose=None):
         Thread.__init__(self, group, target, name, args, kwargs, Verbose)
         self._return = None
-    # the run method will be executed with start() method is called
-    # of any object in MyThread class
+
     def run(self):
         if self._Thread__target is not None:
             self._return = self._Thread__target(*self._Thread__args,
@@ -95,14 +94,14 @@ def spin(key):
 	    thread.start()
 	with open('Data Import/%s.csv'%key, 'w') as f:
 		writer=csv.writer(f,delimiter=',',lineterminator='\n')
-		# Strand is basically a set of data
+	
 		writer.writerows(gener([strand.join() for strand in threads]))
 	print 'Updated.......%s.csv' %key
 
 def gener(data):
 	for count in xrange (len(time_index)):
 		if count==0:
-			# GENERATORS - like iterables but can only iterate through ONCE
+			
 			yield [time_index[count]]+[a[count] for a in data]
 		else:
 			yield [time_index[count]]+[a[count][:a[count].index(',')] for a in  data]
